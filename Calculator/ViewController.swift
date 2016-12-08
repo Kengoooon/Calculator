@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class ViewController: UIViewController {
     @IBOutlet weak var resultlbl: UILabel!
     
@@ -63,7 +65,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func signBtn(_ sender: Any) {
-        result = String(-1 * Float64(result)!)
+        result = String(format:"%g",-1 * Float64(result)!)
     }
     @IBAction func persentBtn(_ sender: Any) {
         result = String(Float64(result)! / 100)
@@ -142,6 +144,8 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
 
 
 }
