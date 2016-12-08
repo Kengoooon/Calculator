@@ -66,6 +66,7 @@ class ViewController: UIViewController {
     
     @IBAction func signBtn(_ sender: Any) {
         result = String(format:"%g",-1 * Float64(result)!)
+        resultlbl.text = result
     }
     @IBAction func persentBtn(_ sender: Any) {
         result = String(Float64(result)! / 100)
