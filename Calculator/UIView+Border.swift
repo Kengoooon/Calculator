@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+
+//layout用設定
 extension UIView {
     
     // 枠線の色
