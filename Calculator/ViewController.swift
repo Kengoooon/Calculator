@@ -19,12 +19,9 @@ class ViewController: UIViewController {
     var ope:String = ""
     var result:String = ""
     var ans:String = ""
-    var numberStack = [String]()
-    var operatorStack = [String]()
-    var stackCount = 0
-    var opestackCount = 0
     var i = 0
     var tmp:Float64 = 0
+    var firstFlg = 0
     
     //整数の時に小数点以下を表示しない関数
     func disdot(input:Float64) -> String{
@@ -39,24 +36,42 @@ class ViewController: UIViewController {
     
     
     //計算関数
-    func culc(input:String) -> String{
+    func culc(input:String) -> (){
         switch ope {
         case "+":
-            result = String(format:"%g",sum + Float64(input)!)
+            sum += Float64(input)!
+            result = String(format:"%g",sum)
             resultlbl.text = result
         case "-":
-            result = String(format:"%g",sum - Float64(input)!)
+            sum -= Float64(input)!
+            result = String(format:"%g",sum)
             resultlbl.text = result
         case "×":
-            result = String(format:"%g",sum * Float64(input)!)
+            if firstFlg == 0{
+                sum = Float64(input)!
+                result = String(format:"%g",sum)
+                resultlbl.text = result
+                firstFlg = 1
+            }else{
+            sum *= Float64(input)!
+            print(sum)
+            result = String(format:"%g",sum)
             resultlbl.text = result
+            }
         case "÷":
-            result = String(format:"%g",sum / Float64(input)!)
+            if firstFlg == 0{
+                sum = Float64(input)!
+                result = String(format:"%g",sum)
+                resultlbl.text = result
+                firstFlg = 1
+            }else{
+            sum /= Float64(input)!
+            result = String(format:"%g",sum)
             resultlbl.text = result
-            
+            }
         default: break
         }
-        return result
+        return
     }
     
     //入力値をresultlblに表示
@@ -196,141 +211,56 @@ class ViewController: UIViewController {
     @IBAction func clearBtn(_ sender: Any) {
         sum = 0
         result = ""
-        resultlbl.text = ""
+        resultlbl.text = "0"
         dotFlg = 0
-        operatorStack.removeAll()
-        numberStack.removeAll()
+        firstFlg = 0
+        
     }
     
     
     //足し算
     @IBAction func additionBtn(_ sender: Any) {
         if opeFlg == 0{
-            numberStack.append(result)
-            operatorStack.append("+")
-            stackCount = numberStack.count
-            result = ""
-            print(numberStack)
- 
-            if stackCount == 1{
-                sum = Float64(numberStack[0])!
-                opeFlg = 1
-                resultlbl.text = disdot(input: sum)
-            }else{
-                while(i != stackCount - 1) {
-                    print(stackCount)
-                    sum += Float64(numberStack[i])!
-                    i += 1
-                    opeFlg = 1
-                    resultlbl.text = disdot(input: sum)
-                }
-                print(sum)
-                print(operatorStack)
-            }
-            
+            ope = "+"
+            culc(input: result)
+            opeFlg = 1
         }else if opeFlg == 1{
-            opestackCount = operatorStack.count
-            operatorStack.remove(at: opestackCount - 1)
-            operatorStack.append("+")
-            resultlbl.text = disdot(input: sum)
-            print(operatorStack)
+            ope = "+"
         }
     }
     
     //引き算
     @IBAction func subtractionBtn(_ sender: Any) {
         if opeFlg == 0{
-            numberStack.append(result)
-            operatorStack.append("-")
-            stackCount = numberStack.count
-            result = ""
-            print(numberStack)
-            
-            if stackCount == 1{
-                sum = Float64(numberStack[0])!
-                opeFlg = 1
-                resultlbl.text = disdot(input: sum)
-            }else{
-                while(i != stackCount - 1) {
-                    sum += Float64(numberStack[i])!
-                    i += 1
-                    opeFlg = 1
-                    resultlbl.text = disdot(input: sum)
-                }
-                print(sum)
-                print(operatorStack)
-            }
-            
+            ope = "-"
+            culc(input: result)
+            opeFlg = 1
         }else if opeFlg == 1{
-            opestackCount = operatorStack.count
-            operatorStack.remove(at: opestackCount - 1)
-            operatorStack.append("-")
-            resultlbl.text = disdot(input: sum)
+            ope = "-"
         }
-
     }
+    
+    //掛け算
     @IBAction func multiplicationBtn(_ sender: Any) {
         if opeFlg == 0{
-            numberStack.append(result)
-            operatorStack.append("×")
-            stackCount = numberStack.count
-            result = ""
-            print(numberStack)
-            
-            if stackCount == 1{
-                sum = Float64(numberStack[0])!
-                opeFlg = 1
-                resultlbl.text = numberStack[stackCount - 1]
-            }else{
-                while(i != stackCount - 2) {
-                    sum += Float64(numberStack[i])!
-                    i += 1
-                    opeFlg = 1
-                    resultlbl.text = numberStack[stackCount - 1]
-                }
-                 print(sum)
-                 print(operatorStack)
-            }
-            
+            print(result)
+            ope = "×"
+            culc(input: result)
+            opeFlg = 1
         }else if opeFlg == 1{
-            opestackCount = operatorStack.count
-            operatorStack.remove(at: opestackCount-1)
-            operatorStack.append("×")
-            resultlbl.text = numberStack[stackCount - 1]
-            print(operatorStack)
+            ope = "×"
         }
-
     }
+    
+    //割り算
     @IBAction func divisionBtn(_ sender: Any) {
         if opeFlg == 0{
-            numberStack.append(result)
-            operatorStack.append("÷")
-            stackCount = numberStack.count
-            result = ""
-            print(numberStack)
-            
-            if stackCount == 1{
-                sum = Float64(numberStack[0])!
-                opeFlg = 1
-                resultlbl.text = numberStack[stackCount - 1]
-            }else{
-                while(i != stackCount - 2) {
-                    sum += Float64(numberStack[i])!
-                    i += 1
-                    opeFlg = 1
-                    resultlbl.text = numberStack[stackCount - 1]
-                }
-                print(sum)
-                print(operatorStack)
-            }
-            
+            ope = "÷"
+            culc(input: result)
+            opeFlg = 1
         }else if opeFlg == 1{
-            opestackCount = operatorStack.count
-            operatorStack.remove(at: opestackCount-1)
-            operatorStack.append("÷")
-            resultlbl.text = numberStack[stackCount - 1]
+            ope = "÷"
         }
-        
     }
 
     @IBAction func equalBtn(_ sender: Any) {
@@ -338,39 +268,8 @@ class ViewController: UIViewController {
         if result == "0"{
         resultlbl.text = "エラー"
         }else{
-    
-            while(opestackCount != 0){
-                ope = operatorStack[opestackCount - 1]
-                switch ope {
-                case "+":
-                    tmp = Float64(numberStack[opestackCount - 1])! + Float64(numberStack[opestackCount])!
-                    numberStack.remove(at: opestackCount)
-                    numberStack.remove(at: opestackCount - 1)
-                    numberStack.append(String(tmp))
-                    result = String(format:"%g",sum + Float64(result)!)
-                    resultlbl.text = result
-                    opestackCount -= 1
-                case "-":
-                    result = String(format:"%g",sum - Float64(result)!)
-                    resultlbl.text = result
-                    opestackCount -= 1
-                case "×":
-                    result = String(format:"%g",sum * Float64(result)!)
-                    resultlbl.text = result
-                    opestackCount -= 1
-                case "÷":
-                    result = String(format:"%g",sum / Float64(result)!)
-                    resultlbl.text = result
-                    opestackCount -= 1
 
-            default: break
-            }   
-            }
             
-            
-            
-                
-                
             }
         
         
