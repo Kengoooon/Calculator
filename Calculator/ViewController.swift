@@ -12,6 +12,11 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var resultlbl: UILabel!
+    @IBOutlet weak var addBtn: UIButton!
+    @IBOutlet weak var subBtn: UIButton!
+    @IBOutlet weak var mulBtn: UIButton!
+    @IBOutlet weak var divBtn: UIButton!
+    
     
     var sum:Float64 = 0
     var dotFlg:Int = 0
@@ -34,41 +39,43 @@ class ViewController: UIViewController {
         dotFlg = 0
     }
     
+    //罫線をデフォルト値に戻す関数
+    func bouderClear() -> (){
+        addBtn.layer.borderWidth = 0.5;
+        subBtn.layer.borderWidth = 0.5;
+        mulBtn.layer.borderWidth = 0.5;
+        divBtn.layer.borderWidth = 0.5;
+    }
+    
     
     //計算関数
     func culc(input:String) -> (){
         switch ope {
         case "+":
             sum += Float64(input)!
+            print(sum)
             result = String(format:"%g",sum)
             resultlbl.text = result
         case "-":
             sum -= Float64(input)!
+            print(sum)
             result = String(format:"%g",sum)
             resultlbl.text = result
         case "×":
-            if firstFlg == 0{
-                sum = Float64(input)!
-                result = String(format:"%g",sum)
-                resultlbl.text = result
-                firstFlg = 1
-            }else{
             sum *= Float64(input)!
             print(sum)
             result = String(format:"%g",sum)
             resultlbl.text = result
-            }
         case "÷":
-            if firstFlg == 0{
-                sum = Float64(input)!
-                result = String(format:"%g",sum)
-                resultlbl.text = result
-                firstFlg = 1
-            }else{
             sum /= Float64(input)!
             result = String(format:"%g",sum)
             resultlbl.text = result
-            }
+         case "":
+            sum = Float64(input)!
+            result = String(format:"%g",sum)
+            resultlbl.text = result
+            firstFlg = 1
+            
         default: break
         }
         return
@@ -79,12 +86,12 @@ class ViewController: UIViewController {
         if opeFlg == 0{
             result += "0"
             resultlbl.text = result
-            //
         }else{
             //tmp　に　演算子があれば　新しく文字列を表示　tmpをクリア
             result = "0"
             resultlbl.text = result
             flgClear()
+            bouderClear()
         }
 
     }
@@ -99,6 +106,7 @@ class ViewController: UIViewController {
             result = "1"
             resultlbl.text = result
             flgClear()
+            bouderClear()
         }
     }
     @IBAction func twoBtn(_ sender: Any) {
@@ -109,6 +117,7 @@ class ViewController: UIViewController {
             result = "2"
             resultlbl.text = result
             flgClear()
+            bouderClear()
         }
     }
     @IBAction func threeBtn(_ sender: Any) {
@@ -119,6 +128,7 @@ class ViewController: UIViewController {
             result = "3"
             resultlbl.text = result
             flgClear()
+            bouderClear()
         }
     }
     @IBAction func fourBtn(_ sender: Any) {
@@ -129,6 +139,7 @@ class ViewController: UIViewController {
             result = "4"
             resultlbl.text = result
             flgClear()
+            bouderClear()
         }
     }
     
@@ -140,6 +151,7 @@ class ViewController: UIViewController {
             result = "5"
             resultlbl.text = result
             flgClear()
+            bouderClear()
         }
     }
     
@@ -151,6 +163,7 @@ class ViewController: UIViewController {
             result = "6"
             resultlbl.text = result
             flgClear()
+            bouderClear()
         }
     }
     
@@ -162,6 +175,7 @@ class ViewController: UIViewController {
             result = "7"
             resultlbl.text = result
             flgClear()
+            bouderClear()
         }
     }
     
@@ -173,6 +187,7 @@ class ViewController: UIViewController {
             result = "8"
             resultlbl.text = result
             flgClear()
+            bouderClear()
         }
     }
     
@@ -184,6 +199,7 @@ class ViewController: UIViewController {
             result = "9"
             resultlbl.text = result
             flgClear()
+            bouderClear()
         }
     }
     
@@ -201,7 +217,7 @@ class ViewController: UIViewController {
         resultlbl.text = result
     }
     
-    //%ボタンの処理
+    //%ボタンの処理(未完成)
     @IBAction func persentBtn(_ sender: Any) {
         result = String(Float64(result)! / 100)
         resultlbl.text = result
@@ -214,29 +230,40 @@ class ViewController: UIViewController {
         resultlbl.text = "0"
         dotFlg = 0
         firstFlg = 0
+        ope = ""
+        opeFlg = 0
+        tmp = 0
+        bouderClear()
         
     }
+    
     
     
     //足し算
     @IBAction func additionBtn(_ sender: Any) {
         if opeFlg == 0{
-            ope = "+"
             culc(input: result)
+            ope = "+"
             opeFlg = 1
+            addBtn.layer.borderWidth = 2.0;
         }else if opeFlg == 1{
             ope = "+"
+            bouderClear()
+            addBtn.layer.borderWidth = 2.0;
         }
     }
     
     //引き算
     @IBAction func subtractionBtn(_ sender: Any) {
         if opeFlg == 0{
-            ope = "-"
             culc(input: result)
+            ope = "-"
             opeFlg = 1
+            subBtn.layer.borderWidth = 2.0;
         }else if opeFlg == 1{
             ope = "-"
+            bouderClear()
+            subBtn.layer.borderWidth = 2.0;
         }
     }
     
@@ -244,22 +271,28 @@ class ViewController: UIViewController {
     @IBAction func multiplicationBtn(_ sender: Any) {
         if opeFlg == 0{
             print(result)
-            ope = "×"
             culc(input: result)
+            ope = "×"
             opeFlg = 1
+            mulBtn.layer.borderWidth = 2.0;
         }else if opeFlg == 1{
             ope = "×"
+            bouderClear()
+            mulBtn.layer.borderWidth = 2.0;
         }
     }
     
     //割り算
     @IBAction func divisionBtn(_ sender: Any) {
         if opeFlg == 0{
-            ope = "÷"
             culc(input: result)
+            ope = "÷"
             opeFlg = 1
+            divBtn.layer.borderWidth = 2.0;
         }else if opeFlg == 1{
             ope = "÷"
+            bouderClear()
+            divBtn.layer.borderWidth = 2.0;
         }
     }
 
@@ -268,8 +301,7 @@ class ViewController: UIViewController {
         if result == "0"{
         resultlbl.text = "エラー"
         }else{
-
-            
+            culc(input: result)
             }
         
         
