@@ -29,10 +29,10 @@ class ViewController: UIViewController {
     var firstFlg = 0
     
     //整数の時に小数点以下を表示しない関数
-    func disdot(input:Float64) -> String{
-        ans = String(format:"%g",input)
-        return ans
-    }
+//    func disdot(input:Float64) -> String{
+//        ans = String(format:"%g",input)
+//        return ans
+//    }
     
     func flgClear() -> (){
         opeFlg = 0
@@ -217,9 +217,9 @@ class ViewController: UIViewController {
         resultlbl.text = result
     }
     
-    //%ボタンの処理(未完成)
+    //%ボタンの処理
     @IBAction func persentBtn(_ sender: Any) {
-        result = String(Float64(result)! / 100)
+        result = String(format:"%g",sum * (Float64(result)! / 100 ))
         resultlbl.text = result
     }
     
@@ -302,6 +302,7 @@ class ViewController: UIViewController {
         resultlbl.text = "エラー"
         }else{
             culc(input: result)
+            opeFlg = 1
             }
         
         
