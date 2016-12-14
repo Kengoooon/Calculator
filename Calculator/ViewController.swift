@@ -291,7 +291,7 @@ class ViewController: UIViewController {
     //=ボタンの処理
     @IBAction func equalBtn(_ sender: Any) {
         
-        if result == "0"{
+        if ope == "÷" && result == "0"{
         resultlbl.text = "エラー"
         }else{
             calc(input: result)
