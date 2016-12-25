@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BFC9ACEC1DFD77BB0008A39C /* ConvertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9ACEB1DFD77BB0008A39C /* ConvertViewController.swift */; };
 		BFE9DA2E1DF865210012010C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE9DA2D1DF865210012010C /* AppDelegate.swift */; };
 		BFE9DA301DF865210012010C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE9DA2F1DF865210012010C /* ViewController.swift */; };
 		BFE9DA331DF865210012010C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFE9DA311DF865210012010C /* Main.storyboard */; };
@@ -36,7 +35,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BFC9ACEB1DFD77BB0008A39C /* ConvertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertViewController.swift; sourceTree = "<group>"; };
 		BFE9DA2A1DF865210012010C /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFE9DA2D1DF865210012010C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFE9DA2F1DF865210012010C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,7 +103,6 @@
 				BFE9DA2F1DF865210012010C /* ViewController.swift */,
 				BFE9DA5B1DF99A270012010C /* UIView+Border.swift */,
 				BFE9DA311DF865210012010C /* Main.storyboard */,
-				BFC9ACEB1DFD77BB0008A39C /* ConvertViewController.swift */,
 				BFE9DA341DF865210012010C /* Assets.xcassets */,
 				BFE9DA361DF865210012010C /* LaunchScreen.storyboard */,
 				BFE9DA391DF865210012010C /* Info.plist */,
@@ -267,7 +264,6 @@
 			files = (
 				BFE9DA301DF865210012010C /* ViewController.swift in Sources */,
 				BFE9DA2E1DF865210012010C /* AppDelegate.swift in Sources */,
-				BFC9ACEC1DFD77BB0008A39C /* ConvertViewController.swift in Sources */,
 				BFE9DA5C1DF99A270012010C /* UIView+Border.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
